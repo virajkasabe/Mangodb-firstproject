@@ -2,15 +2,19 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose=require('mongoose')
+const routes=require('./productroutes/productroutes')
+
 const server = express();
 server.use(cors());
 server.use(bodyParser.json());
+server.use('/product',routes)
 const User=require('./Models/User')
+
 
 mongoose.connect('mongodb+srv://virajkasabe:Madhu%40123@leadsoft.xptupne.mongodb.net/?retryWrites=true&w=majority&appName=leadsoft').then(()=>
     console.log('Connected')
 
-
+                                         
 
 ).catch((err)=>
     console.log(err)
@@ -54,7 +58,7 @@ server.post('/login',async(req,res)=>{
                  message: "User does not exist"
         
              })
-    
+             
         }
         if(Password!==userExist.Password){
             return res.json({
