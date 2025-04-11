@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const Product = require('../Models/product');
+const product = require('../Models/product');
 
 router.use(cors());
 
@@ -48,7 +49,7 @@ router.get('/get', async (req, res) => {
 router.put('/update/:id',async()=>{
 try{
     const id=req.params.id;
-     const product=await product.findByIdAndUpdate();
+     await product.findByIdAndUpdate(id,req.body,{new:true});
      res.json({
  
         status: true,
@@ -69,7 +70,7 @@ try{
 router.delete('/delete/:id',async(req,res)=>{
  try{
     const id=req.params.id;
-     const product=await product.findByIdAndDelete;
+     await product.findByIdAndDelete(id);
      res.json({
  
         status: true,
