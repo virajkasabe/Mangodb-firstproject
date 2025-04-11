@@ -40,11 +40,52 @@ router.get('/get', async (req, res) => {
         });
     } catch(err) {
         res.json({
-            status: false,
+       status: false,
             message: `Error: ${err.message}`
         });
     }
 });
+router.put('/update/:id',async()=>{
+try{
+    const id=req.params.id;
+     const product=await product.findByIdAndUpdate();
+     res.json({
+ 
+        status: true,
+        message: "updated succesfuly"
+
+     })
+
+}catch(err){
+    res.json({
+        status: false,
+        message: `Error: ${err.message}`
+    });
+}
+
+
+
+})
+router.delete('/delete/:id',async(req,res)=>{
+ try{
+    const id=req.params.id;
+     const product=await product.findByIdAndDelete;
+     res.json({
+ 
+        status: true,
+        message: "Deleted succesfuly"
+
+     })
+ }catch(err){
+    res.json({
+        status: false,
+        message: `Error: ${err.message}`
+    });
+ }
+        
+})
+
+
 
 module.exports = router;
    
