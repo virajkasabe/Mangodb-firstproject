@@ -46,12 +46,12 @@ router.get('/get', async (req, res) => {
         });
     }
 });
-router.put('/update/:id',async()=>{
+router.put('/update/:id',async(req,res)=>{
 try{
     const id=req.params.id;
-     await product.findByIdAndUpdate(id,req.body,{new:true});
+     const updated=await product.findByIdAndUpdate(id,req.body,{new:true});
+
      res.json({
- 
         status: true,
         message: "updated succesfuly"
 
